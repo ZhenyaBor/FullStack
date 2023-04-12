@@ -1,0 +1,141 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type AgencyEntity {
+  description: String
+  id: Int!
+  title: String!
+  type: String!
+}
+
+input CreateAgencyInput {
+  description: String
+  title: String!
+  type: String!
+}
+
+input CreateOrganizationInput {
+  description: String
+  image: String
+  status: String!
+  title: String!
+  url: String
+}
+
+input CreateUserInput {
+  email: String!
+  profile: CreateUserProfileInput!
+  roles: [String!]!
+  userName: String!
+}
+
+input CreateUserProfileInput {
+  firstName: String!
+  lastName: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+input FilterInput {
+  id: Float
+  title: String
+  type: [String!]
+}
+
+type GetAgenciesResult {
+  agencies: [AgencyEntity!]!
+  totalCount: Int!
+}
+
+type GetOrganizationsResult {
+  organizations: [OrganizationEntity!]!
+  totalCount: Int!
+}
+
+input Input {
+  filter: FilterInput
+  pagination: PaginationInput!
+}
+
+type Mutation {
+  createAgency(createAgencyInput: CreateAgencyInput!): AgencyEntity!
+  createOrganization(createOrganizationInput: CreateOrganizationInput!): OrganizationEntity!
+  createUser(createUserInput: CreateUserInput!): UserEntity!
+  deleteAgency(id: Float!): Int!
+  deleteOrganization(id: Float!): Float!
+  removeUser(id: Float!): Float!
+  updateAgency(updateAgencyInput: UpdateAgencyInput!): AgencyEntity!
+  updateOrganization(updateOrganizationInput: UpdateOrganizationInput!): OrganizationEntity!
+  updateUser(updateUserInput: UpdateUserInput!): UserEntity!
+}
+
+type OrganizationEntity {
+  description: String
+  id: Int!
+  image: String
+  status: String!
+  title: String!
+  url: String
+}
+
+input PaginationInput {
+  pageNumber: Float!
+  pageSize: Float!
+}
+
+input PaginationOrganizationInput {
+  pageNumber: Float!
+  pageSize: Float!
+}
+
+type ProfileEntity {
+  firstName: String!
+  id: Float!
+  lastName: String!
+}
+
+type Query {
+  getAllAgencies(input: Input!): GetAgenciesResult!
+  getAllOrganization(pagination: PaginationOrganizationInput!): GetOrganizationsResult!
+  getAllUser: [UserEntity!]!
+  getOneUser(id: Float!): UserEntity!
+  getUserByRole(roles: [String!]!): [UserEntity!]!
+}
+
+input UpdateAgencyInput {
+  description: String
+  id: Int!
+  title: String!
+  type: String!
+}
+
+input UpdateOrganizationInput {
+  description: String
+  id: Int!
+  image: String
+  status: String!
+  title: String!
+  url: String
+}
+
+input UpdateUserInput {
+  email: String!
+  id: ID!
+  profile: CreateUserProfileInput!
+  roles: [String!]!
+  userName: String!
+}
+
+type UserEntity {
+  dateCreate: DateTime!
+  dateUpdate: DateTime!
+  email: String!
+  id: ID!
+  profile: ProfileEntity!
+  roles: [String!]!
+  userName: String!
+}
